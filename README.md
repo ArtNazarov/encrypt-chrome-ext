@@ -8,7 +8,7 @@
 
 Публикация - шифрограмма должна быть внутри тега p. Поставь xor| перед скрытым текстом
 
-Поддерживаемый шифр - XOR со сдвигом
+Поддерживаемый шифр - XOR со сдвигом, DES
 
 Decrypt text on page
 
@@ -18,4 +18,4 @@ To encrypt use XOR https://encryptor.artnazarov.ru
 
 Publication - ciphered text should place into tage p. Before cipher place text xor|
 
-Avaible cipher - XOR with shift
+Avaible cipher - XOR with shift, DES
