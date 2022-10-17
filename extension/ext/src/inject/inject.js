@@ -1,3 +1,7 @@
+// Above-mentioned will work or use this simple form
+
+ console.log(CryptoJS.AES);
+
 function xenc(str, pass){
  var result = "";
  var k = 0;
@@ -48,26 +52,52 @@ function xdenc(str, pass){
  return result;
 }
 
+function des_encrypt(message = '', key = ''){
+    var message = CryptoJS.DES.encrypt(message, key);
+    return message.toString();
+}
+function des_decrypt(message = '', key = ''){
+    console.log('запущена '+message+' '+key);
+    var code = CryptoJS.DES.decrypt(message, key);
+    var decryptedMessage = code.toString(CryptoJS.enc.Utf8);
+
+    return decryptedMessage;
+}
+
 function custom_encryptor(str, pass, ciph){
     var result = str;
     switch (ciph)  {
         case 'xor' : { result = xenc(str, pass); break; } 
+        case 'des' : { result = des_encrypt(str, pass); break; } 
+    
     }
+    
     return result;
 }
 
 function custom_decryptor(str, pass, ciph){
     console.log('диспетчер дешифровки');
+    console.log('самотестирование');
     if ( 
             'Something other' === xdenc('ĦĉĝĐăĈęĜďŎĜďěÿĀ', 'testpassword') ){
-        console.log('расшифровка эталона верна');
+        console.log('расшифровка эталона XOR верна');
             }
             else {
-                console.log('Расшифровка эталона неверна');
+                console.log('Расшифровка эталона XOR неверна');
             }
+    
+     if ( 
+            'DES HIDDEN TEXT' === des_decrypt('U2FsdGVkX19ljADygTSUMz3HzLl5zo77P8u0wj9FFbU=', 'testpassword') ){
+        console.log('расшифровка эталона DES верна');
+            }
+            else {
+                console.log('Расшифровка эталона DES неверна');
+            }
+            
     var result = str;
     switch (ciph)  {
         case 'xor' : { result = xdenc(str, pass); break; } 
+        case 'des' : { result = des_decrypt(str, pass); break; }    
     }
     return result;
 }
@@ -78,6 +108,10 @@ function custom_decryptor(str, pass, ciph){
 function decryptor(pass, ciph){
   console.log('Пытаемся расшифровать...');
   console.log('Пароль сообщен как '+pass);
+  
+  if (ciph === 'xor') {
+  
+  
   var etalon_pass='testpassword';
   window.etalon_pass=etalon_pass;
   window.pass=pass;
@@ -91,6 +125,7 @@ function decryptor(pass, ciph){
           
       }
   };
+  };
   console.log('Метод шифрвки как '+ciph);
     
     
@@ -99,10 +134,10 @@ function decryptor(pass, ciph){
   var e = "";
   for (var i=0;i<nodes.length;i++){
         e = nodes[i].innerText;
-        console.log('Фрагмент '+e.substring(0, 3)); 
-        if (e.substring(0, 4) === "xor|") {
+        console.log('Фрагмент '+e.substring(0, 4)); 
+        if (e.substring(0, 4) === "@@@|") {
             console.log('Обнаружена шифрограмма!');
-           var arr = e.split('xor|');
+           var arr = e.split('@@@|');
            console.log(arr);
            var frag = arr[1];
         

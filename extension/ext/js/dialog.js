@@ -18,8 +18,10 @@ document.addEventListener("DOMContentLoaded", function(){
   console.log(   localStorage.getItem('pass') );
    document.getElementById('pass').value =   localStorage.getItem('pass');
    switch( localStorage.getItem('ciph')){
-     case "xor" : { document.getElementById('xor').selectedIndex = 1; break; }
-      default :
+     case "xor" : { document.getElementById('ciph').selectedIndex = 1; break; }
+     case "des" : { document.getElementById('ciph').selectedIndex = 2; break; }
+
+        default :
      {
        document.getElementById('ciph').selectedIndex = 0; break;
      }

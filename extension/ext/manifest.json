@@ -13,6 +13,7 @@
   "background": {
     "scripts": [
       "src/bg/background.js"
+             
     ],
     "persistent": true
   },
@@ -50,7 +51,10 @@
         "https://*/*"
       ],
       "js": [
-        "src/inject/inject.js"
+        "src/crypto-js/crypto-js.min.js",        
+        "src/inject/inject.js" 
+		
+		
       ]
     }
   ]
